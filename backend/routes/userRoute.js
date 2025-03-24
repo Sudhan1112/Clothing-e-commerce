@@ -1,12 +1,10 @@
-import mongoose from "mongoose";
+import express from 'express';
+import { loginUser,registerUser,adminLogin } from '../controllers/userController.js';
 
-const userSchema = new mongoose.Schema({
-    name: { type: String, required: true },
-    email: { type: String, required: true, unique: true },
-    password: { type: String, required: true },
-    cartData: { type: Object, default: {} }
-}, { minimize: false })
+const userRouter = express.Router();
 
-const userModel = mongoose.models.user || mongoose.model('user',userSchema);
+userRouter.post('/register',registerUser)
+userRouter.post('/login',loginUser)
+userRouter.post('/admin',adminLogin)
 
-export default userModel
+export default userRouter;

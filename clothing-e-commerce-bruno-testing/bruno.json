@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "clothing-e-commerce-bruno-testing",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}

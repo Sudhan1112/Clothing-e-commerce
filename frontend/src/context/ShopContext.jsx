@@ -7,9 +7,9 @@ export const ShopContext = createContext();
 
 const ShopContextProvider = (props) => {
 
-    const currency = 'rs';
+    const currency = '₹';
     const delivery_fee = 10;
-    const backendUrl = import.meta.env.VITE_BACKEND_URL
+    const backendUrl = import.meta.env.VITE_BACKEND_URL || "http://localhost:8000";
     const [search, setSearch] = useState('');
     const [showSearch, setShowSearch] = useState(false);
     const [cartItems, setCartItems] = useState({});
@@ -20,6 +20,7 @@ const ShopContextProvider = (props) => {
 
     const addToCart = async (itemId, size) => {
 
+  
         if (!size) {
             toast.error('Select Product Size');
             return;
@@ -115,41 +116,42 @@ const ShopContextProvider = (props) => {
             if (response.data.success) {
                 setProducts(response.data.products.reverse())
             } else {
+                console.log("error in case1", response.data.message)
                 toast.error(response.data.message)
             }
 
         } catch (error) {
             console.log(error)
-            toast.error(error.message)
+            toast.error("error.message")
         }
     }
 
-    const getUserCart = async ( token ) => {
-        try {
+    // const getUserCart = async ( token ) => {
+    //     try {
             
-            const response = await axios.post(backendUrl + '/api/cart/get',{},{headers:{token}})
-            if (response.data.success) {
-                setCartItems(response.data.cartData)
-            }
-        } catch (error) {
-            console.log(error)
-            toast.error(error.message)
-        }
-    }
+    //         const response = await axios.post(backendUrl + '/api/cart/get',{},{headers:{token}})
+    //         if (response.data.success) {
+    //             setCartItems(response.data.cartData)
+    //         }
+    //     } catch (error) {
+    //         console.log("error 2", error)
+    //         toast.error(error.message)
+    //     }
+    // }
 
     useEffect(() => {
         getProductsData()
     }, [])
 
-    useEffect(() => {
-        if (!token && localStorage.getItem('token')) {
-            setToken(localStorage.getItem('token'))
-            getUserCart(localStorage.getItem('token'))
-        }
-        if (token) {
-            getUserCart(token)
-        }
-    }, [token])
+    // useEffect(() => {
+    //     if (!token && localStorage.getItem('token')) {
+    //         setToken(localStorage.getItem('token'))
+    //         getUserCart(localStorage.getItem('token'))
+    //     }
+    //     if (token) {
+    //         getUserCart(token)
+    //     }
+    // }, [token])
 
     const value = {
         products, currency, delivery_fee,
