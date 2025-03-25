@@ -27,7 +27,8 @@ const ShopContextProvider = (props) => {
         }
 
         let cartData = structuredClone(cartItems);
-
+        console.log("gtgh", cartData, itemId);
+        
         if (cartData[itemId]) {
             if (cartData[itemId][size]) {
                 cartData[itemId][size] += 1;
@@ -43,7 +44,9 @@ const ShopContextProvider = (props) => {
         setCartItems(cartData);
 
         if (token) {
-            try {
+            console.log("token", token);
+            
+           try {
 
                 await axios.post(backendUrl + '/api/cart/add', { itemId, size }, { headers: { token } })
 
@@ -95,7 +98,7 @@ const ShopContextProvider = (props) => {
     const getCartAmount = () => {
         let totalAmount = 0;
         for (const items in cartItems) {
-            let itemInfo = products.find((product) => product._id === items);
+            let itemInfo = products.find((product) => product.id === items);
             for (const item in cartItems[items]) {
                 try {
                     if (cartItems[items][item] > 0) {
@@ -126,32 +129,33 @@ const ShopContextProvider = (props) => {
         }
     }
 
-    // const getUserCart = async ( token ) => {
-    //     try {
+    const getUserCart = async ( token ) => {
+        try {
             
-    //         const response = await axios.post(backendUrl + '/api/cart/get',{},{headers:{token}})
-    //         if (response.data.success) {
-    //             setCartItems(response.data.cartData)
-    //         }
-    //     } catch (error) {
-    //         console.log("error 2", error)
-    //         toast.error(error.message)
-    //     }
-    // }
+            const response = await axios.post(backendUrl + '/api/cart/get',{},{headers:{token}})
+            if (response.data.success) {
+                setCartItems(response.data.cartData)
+            }
+        } catch (error) {
+            console.log("error 2", error)
+            toast.error(error.message)
+        }
+    }
 
     useEffect(() => {
         getProductsData()
     }, [])
 
-    // useEffect(() => {
-    //     if (!token && localStorage.getItem('token')) {
-    //         setToken(localStorage.getItem('token'))
-    //         getUserCart(localStorage.getItem('token'))
-    //     }
-    //     if (token) {
-    //         getUserCart(token)
-    //     }
-    // }, [token])
+    useEffect(() => {
+        if (!token && localStorage.getItem('token')) {
+            setToken(localStorage.getItem('token'))
+            getUserCart(localStorage.getItem('token'))
+        }
+        if (token) {
+            getUserCart(token)
+        }
+    }, [token])
+    
 
     const value = {
         products, currency, delivery_fee,

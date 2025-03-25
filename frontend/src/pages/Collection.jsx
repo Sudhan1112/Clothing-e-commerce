@@ -35,7 +35,6 @@ const Collection = () => {
   }
 
   const applyFilter = () => {
-    // console.log('Applying Filter', products);
 
     let productsCopy = products.slice();
 
