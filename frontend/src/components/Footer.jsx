@@ -9,7 +9,7 @@ const Footer = () => {
         <div>
             <img src={assets.logo} className='mb-5 w-32' alt="" />
             <p className='w-full md:w-2/3 text-gray-600'>
-            This platform, <strong>Sadiastic</strong>, is proudly developed by <strong>AshTech</strong>, a Software Service and Production Company based in Pakistan. 
+            This platform, <strong>Clothing</strong>, is proudly developed by <strong>Sudhan</strong>, a Software Service and Production Company based in Chennai. 
             Dedicated to delivering innovative solutions, AshTech aims to empower businesses and individuals through cutting-edge technology.
             </p>
         </div>
@@ -27,8 +27,8 @@ const Footer = () => {
         <div>
             <p className='text-xl font-medium mb-5'>GET IN TOUCH</p>
             <ul className='flex flex-col gap-1 text-gray-600'>
-                <li>+1-212-456-7890</li>
-                <li>contact@sadiastic.com</li>
+                <li>91-xxxxxxx1138</li>
+                <li>contact@clothing.com</li>
             </ul>
         </div>
 
