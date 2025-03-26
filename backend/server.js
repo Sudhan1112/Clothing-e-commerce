@@ -10,17 +10,13 @@ import orderRouter from './routes/orderRoute.js'
 
 // App Config
 const app = express()
-const port = process.env.PORT || 4000
+const port = process.env.PORT || 4000;
 connectDB()
 connectCloudinary()
 
 // middlewares
 app.use(express.json())
-app.use(cors({
-    origin: "https://clothing-ec.netlify.app", 
-    methods: "GET,POST,PUT,DELETE",
-    credentials: true 
-  }));
+app.use(cors());
   
 
 // Routes
