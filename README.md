@@ -95,6 +95,10 @@ A **full-stack e-commerce application** designed to provide a seamless online sh
 - `POST /user/login` - User authentication.
 
 ---
+
+## Home Page🏠
+![image](https://github.com/user-attachments/assets/4db8b681-ba73-4103-bfa4-82b09023ea45)
+
 ## 🏗️ Design Challenges & Solutions
 
 ### 🤔 Key Challenges
